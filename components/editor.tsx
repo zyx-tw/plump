@@ -8,9 +8,9 @@ import {
   safeParseScene,
   Scene3D,
   type SceneV1,
-} from "@workspace/3d"
-import { Spinner } from "@workspace/ui/components/ui/spinner"
-import { cn } from "@workspace/ui/lib/utils"
+} from "@/lib/3d"
+import { Spinner } from "@/components/ui/spinner"
+import { cn } from "@/lib/utils"
 
 import { Dock } from "@/components/dock"
 import { ZYX_SVG } from "@/lib/zyx-svg"

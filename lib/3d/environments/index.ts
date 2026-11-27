@@ -16,7 +16,7 @@ import { violet } from "./violet"
 
 /**
  * Every environment map the editor offers, in menu order. To add one, put its
- * gain map files in apps/3d/public/env/<name>/, create its file, and list it
+ * gain map files in public/env/<name>/, create its file, and list it
  * here.
  */
 export const environments: Registry<EnvironmentPreset> = [

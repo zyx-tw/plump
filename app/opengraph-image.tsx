@@ -1,10 +1,6 @@
 import { ImageResponse } from "next/og"
 
-import {
-  OG_CONTENT_TYPE,
-  OG_SIZE,
-  ZyxOgImage,
-} from "@workspace/ui/components/og-image"
+import { OG_CONTENT_TYPE, OG_SIZE, ZyxOgImage } from "@/components/og-image"
 
 export const alt = "Plump by zyx — turn your SVG into a 3D object"
 export const size = OG_SIZE

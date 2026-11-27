@@ -6,7 +6,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@workspace/ui/components/ui/select"
+} from "@/components/ui/select"
 
 type PresetSelectProps = {
   label: string
