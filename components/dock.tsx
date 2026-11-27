@@ -32,17 +32,17 @@ import {
   type EffectPreset,
   type ParamValue,
   type SceneV1,
-} from "@workspace/3d"
-import { Button } from "@workspace/ui/components/ui/button"
-import { Label } from "@workspace/ui/components/ui/label"
+} from "@/lib/3d"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@workspace/ui/components/ui/popover"
-import { Separator } from "@workspace/ui/components/ui/separator"
-import { Switch } from "@workspace/ui/components/ui/switch"
-import { Toolbar } from "@workspace/ui/components/ui/toolbar"
+} from "@/components/ui/popover"
+import { Separator } from "@/components/ui/separator"
+import { Switch } from "@/components/ui/switch"
+import { Toolbar } from "@/components/ui/toolbar"
 
 import { ParamGroup } from "@/components/param-control"
 import { PresetSelect } from "@/components/preset-select"

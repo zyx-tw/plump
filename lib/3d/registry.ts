@@ -84,7 +84,7 @@ export function defineStaging(preset: StagingPreset) {
 }
 
 /**
- * A gain map rendition in apps/3d/public/env/<name>/: an SDR image, the gain
+ * A gain map rendition in public/env/<name>/: an SDR image, the gain
  * map that restores its HDR range, and their metadata. At 4096 x 2048 it
  * weighs well under a megabyte, where the .hdr it came from is about 25 MB.
  */

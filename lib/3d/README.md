@@ -1,27 +1,17 @@
-# @workspace/3d
+# lib/3d
 
-Turns an SVG into a 3D object and renders it from one `scene.json`. The editor at [Plump](https://plump.zyx.tw) (`apps/3d`) writes the file; any app in this monorepo renders it with `<Scene3D>`.
+Turns an SVG into a 3D object and renders it from one `scene.json`. The Plump editor at [plump.zyx.tw](https://plump.zyx.tw) writes the file; another app renders it with `<Scene3D>`.
 
 ## Render a scene in another app
 
-1. Depend on the package and let Next.js transpile it:
-
-   ```jsonc
-   // apps/<app>/package.json
-   "dependencies": { "@workspace/3d": "workspace:*" }
-   ```
-
-   ```js
-   // apps/<app>/next.config.mjs
-   transpilePackages: ["@workspace/3d" /* , ... */]
-   ```
+1. Copy this folder into the app (www.zyx.tw keeps a copy) and add its dependencies from this repo's `package.json`: `three`, `@react-three/fiber`, `@react-three/drei`, `@react-three/postprocessing`, `postprocessing`, `three-mesh-bvh`, `three-gpu-pathtracer`, `@monogrid/gainmap-js` and `zod`.
 
 2. Export a scene.json from plump.zyx.tw, keep it next to your component, and render it from a client component:
 
    ```tsx
    "use client"
 
-   import { parseScene, Scene3D } from "@workspace/3d"
+   import { parseScene, Scene3D } from "@/lib/3d"
 
    import logo from "./logo.scene.json"
 
@@ -52,10 +42,10 @@ Fixed params are still written, always at their defaults. Numbers outside a cont
 
 Each preset is one file. Its `params` define the editor's controls, so the panel needs no changes.
 
-1. Create the file in `src/materials/`, `src/effects/`, `src/environments/` or `src/stagings/`:
+1. Create the file in `lib/3d/materials/`, `lib/3d/effects/`, `lib/3d/environments/` or `lib/3d/stagings/`:
 
    ```tsx
-   // src/materials/chrome.tsx
+   // lib/3d/materials/chrome.tsx
    import { defineMaterial } from "../registry"
 
    export const chrome = defineMaterial({
@@ -78,11 +68,11 @@ Each preset is one file. Its `params` define the editor's controls, so the panel
    ```
 
 2. List it in that folder's `index.ts`.
-3. For an environment, convert its HDRI to a gain map first (for example with the free [Gain map creator](https://gainmap-creator.monogrid.com): WebP output, 4096 × 2048) and put `sdr.webp`, `gainmap.webp` and `metadata.json` in `apps/3d/public/env/<name>/`; the preset then sets `files: gainMapFiles("<name>")`. A plain `.hdr` path works too, but weighs about 30 times as much.
+3. For an environment, convert its HDRI to a gain map first (for example with the free [Gain map creator](https://gainmap-creator.monogrid.com): WebP output, 4096 × 2048) and put `sdr.webp`, `gainmap.webp` and `metadata.json` in `public/env/<name>/`; the preset then sets `files: gainMapFiles("<name>")`. A plain `.hdr` path works too, but weighs about 30 times as much.
 
 A param is a `number` (slider), a `color` (color picker) or a `boolean` (switch). Mark it `fixed: true` to keep it at its default: the editor hides it and the renderer ignores other values, so a look that needs another value becomes its own preset instead of another slider. An effect also names its `stage`: `"scene"` effects run on the linear frame before tone mapping, which glow needs; `"display"` effects run on the finished image, background included, which a vignette or grain needs.
 
-A staging (`defineStaging`) has no params. It sets the camera `view` and the key `light`, both in degrees around and above the shape, plus the light's intensity; optionally an `object` transform (`position` in scene units, `rotation` in degrees); and optionally a `floor`: the `gap` under the shape, and the shadow's `opacity` and `blur` in scene units. Oblique stays first in `src/stagings/index.ts`, since files without a staging id get it.
+A staging (`defineStaging`) has no params. It sets the camera `view` and the key `light`, both in degrees around and above the shape, plus the light's intensity; optionally an `object` transform (`position` in scene units, `rotation` in degrees); and optionally a `floor`: the `gap` under the shape, and the shadow's `opacity` and `blur` in scene units. Oblique stays first in `lib/3d/stagings/index.ts`, since files without a staging id get it.
 
 ## Credits
 

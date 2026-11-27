@@ -5,11 +5,11 @@ import {
   type ParamDef,
   type ParamDefs,
   type ParamValue,
-} from "@workspace/3d"
-import { Input } from "@workspace/ui/components/ui/input"
-import { Label } from "@workspace/ui/components/ui/label"
-import { Slider } from "@workspace/ui/components/ui/slider"
-import { Switch } from "@workspace/ui/components/ui/switch"
+} from "@/lib/3d"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Slider } from "@/components/ui/slider"
+import { Switch } from "@/components/ui/switch"
 
 type ParamGroupProps = {
   /** Prefix for the controls' element ids, unique on the page. */
