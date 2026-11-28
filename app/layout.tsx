@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils"
 import { attributeRootLayoutRequest } from "@/lib/otel/layout"
 import "./globals.css"
 import { BottomCorners, LegalLinks, TopCorners } from "@/components/corners"
-import { ThemeProvider } from "@/components/theme-provider"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { fontVariables } from "@/lib/fonts"
 
@@ -43,19 +42,13 @@ export default async function RootLayout({
   await attributeRootLayoutRequest()
 
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning
-      className={cn("dark", "antialiased", fontVariables, "font-sans")}
-    >
+    <html lang="en" className={cn("antialiased", fontVariables, "font-sans")}>
       <body>
-        <ThemeProvider>
-          <TooltipProvider>
-            <TopCorners trail={[{ label: SITE_NAME }]} />
-            {children}
-            <BottomCorners links={<LegalLinks />} />
-          </TooltipProvider>
-        </ThemeProvider>
+        <TooltipProvider>
+          <TopCorners trail={[{ label: SITE_NAME }]} />
+          {children}
+          <BottomCorners links={<LegalLinks />} />
+        </TooltipProvider>
       </body>
     </html>
   )
